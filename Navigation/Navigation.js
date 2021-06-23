@@ -1,32 +1,75 @@
 // Navigation/Navigation.js
 
-import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Search from '../Components/Search'
+import Favorites from '../Components/Favorites'
+import FilmDetail from '../Components/FilmDetail'
+import { StyleSheet, Image } from 'react-native'
 
-// const SearchStackNavigator = createStackNavigator({
-//   Search: { // Ici j'ai appelé la vue "Search" mais on peut mettre ce que l'on veut. C'est le nom qu'on utilisera pour appeler cette vue
-//     screen: Search,
-//     navigationOptions: {
-//       title: 'Rechercher'
-//     }
-//   }
-// })*
+const Tab = createBottomTabNavigator();
+const searchStack = createStackNavigator();
 
-const Stack = createStackNavigator();
+function searchStackScreen() {
+  return (
+
+    <searchStack.Navigator>
+      <searchStack.Screen name="Recherche" component={Search} />
+      <searchStack.Screen name="Détail des films" component={FilmDetail} />
+    </searchStack.Navigator>
+  
+  );
+}
 
 class Navigation extends React.Component {
 
-
   render() {
+    // return (
+    //   <NavigationContainer>
+    //     <Tab.Navigator>
+    //       <Tab.Screen name="Recherche" component={searchStackScreen} />
+    //       <Tab.Screen name="Favoris" component={Favorites} />
+    //     </Tab.Navigator>
+    //   </NavigationContainer>
+    // )
+
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Rechercher" component={Search} />
-        </Stack.Navigator>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: () => {  
+              if (route.name === 'Recherche') {
+                var source = require('../Images/ic_search.png')
+
+              } else if (route.name === 'Favoris') {
+                var source = require('../Images/ic_favorite.png')
+              }
+              // You can return any component that you like here!
+              return <Image source={source} style={styles.icon}/>
+            },
+          })}
+          tabBarOptions={{
+            activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
+            inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
+            showLabel: false, // On masque les titres
+            showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
+          }}
+        >
+          <Tab.Screen name="Recherche" component={searchStackScreen} />
+          <Tab.Screen name="Favoris" component={Favorites} />
+        </Tab.Navigator>
       </NavigationContainer>
-    )
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 30,
+    height: 30
+  }
+})
 
 export default Navigation
