@@ -10,18 +10,28 @@ import FilmDetail from '../Components/FilmDetail'
 import { StyleSheet, Image } from 'react-native'
 
 const Tab = createBottomTabNavigator();
-const searchStack = createStackNavigator();
 
+const searchStack = createStackNavigator();
 function searchStackScreen() {
   return (
-
     <searchStack.Navigator>
       <searchStack.Screen name="Recherche" component={Search} />
       <searchStack.Screen name="Détail des films" component={FilmDetail} />
     </searchStack.Navigator>
-  
   );
 }
+
+
+const favoritesStack = createStackNavigator();
+function favoritesStackScreen() {
+  return (
+    <favoritesStack.Navigator>
+      <favoritesStack.Screen name="Favoris" component={Favorites} />
+      <favoritesStack.Screen name="Détail des films" component={FilmDetail} />
+    </favoritesStack.Navigator>
+  )
+}
+
 
 class Navigation extends React.Component {
 
@@ -58,7 +68,7 @@ class Navigation extends React.Component {
           }}
         >
           <Tab.Screen name="Recherche" component={searchStackScreen} />
-          <Tab.Screen name="Favoris" component={Favorites} />
+          <Tab.Screen name="Favoris" component={favoritesStackScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     );
