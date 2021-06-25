@@ -8,6 +8,7 @@ import Search from '../Components/Search'
 import Favorites from '../Components/Favorites'
 import FilmDetail from '../Components/FilmDetail'
 import { StyleSheet, Image } from 'react-native'
+import Test from '../Components/Test'
 
 const Tab = createBottomTabNavigator();
 
@@ -45,6 +46,10 @@ class Navigation extends React.Component {
     //   </NavigationContainer>
     // )
 
+
+
+
+
     return (
       <NavigationContainer>
         <Tab.Navigator
@@ -67,6 +72,7 @@ class Navigation extends React.Component {
             showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
           }}
         >
+          <Tab.Screen name="Test" component={Test} />
           <Tab.Screen name="Recherche" component={searchStackScreen} />
           <Tab.Screen name="Favoris" component={favoritesStackScreen} />
         </Tab.Navigator>
