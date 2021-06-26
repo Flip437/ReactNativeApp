@@ -37,7 +37,7 @@ class FilmList extends React.Component {
           if (!this.props.favoriteList && this.props.page < this.props.totalPages) {
             console.log("LOAD MORE FILMS FROM FILM LIST COMPONENT")
             console.log("LOAD MORE FILMS FROM FILM LIST COMPONENT")
-            // On appelle la méthode loadFilm du component Search pour charger plus de films
+            // On appelle la méthode loadFilm du component Search ou News pour charger plus de films
             this.props.loadFilms()
           }
         }}

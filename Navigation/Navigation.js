@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Search from '../Components/Search'
 import Favorites from '../Components/Favorites'
 import FilmDetail from '../Components/FilmDetail'
+import News from '../Components/News'
 import { StyleSheet, Image } from 'react-native'
 import Test from '../Components/Test'
 
@@ -60,6 +61,8 @@ class Navigation extends React.Component {
 
               } else if (route.name === 'Favoris') {
                 var source = require('../Images/ic_favorite.png')
+              } else if (route.name === 'News') {
+                var source =require('../Images/ic_fiber_new.png')
               }
               // You can return any component that you like here!
               return <Image source={source} style={styles.icon}/>
@@ -72,9 +75,9 @@ class Navigation extends React.Component {
             showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
           }}
         >
-          <Tab.Screen name="Test" component={Test} />
           <Tab.Screen name="Recherche" component={searchStackScreen} />
           <Tab.Screen name="Favoris" component={favoritesStackScreen} />
+          <Tab.Screen name="News" component={News} />
         </Tab.Navigator>
       </NavigationContainer>
     );
